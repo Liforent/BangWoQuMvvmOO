@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="15dp"
+    android:background="@drawable/bg_r20_top_white"
+   >
+
+    <TextView
+        android:layout_width="40dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_r2_849eb1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:includeFontPadding="false"
+        android:text="编辑快递信息"
+        android:textColor="#585973"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_edit_save"
+        android:layout_width="46dp"
+        android:layout_height="27dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bg_scan_in_edit_cancel"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/tv5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv5" />
+
+
+    <ImageView
+        android:id="@+id/iv_edit_logo"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="18dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_scan_in_phone"
+        app:layout_constraintTop_toBottomOf="@id/tv5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_edit_tracking_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:textColor="@color/black33"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/iv_edit_logo"
+        app:layout_constraintStart_toEndOf="@id/iv_edit_logo"
+        app:layout_constraintTop_toTopOf="@id/iv_edit_logo"
+        tools:text="圆通 4987987897564654" />
+
+
+    <EditText
+        android:id="@+id/et_edit_phone"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+         android:background="@drawable/bg_r5_99"
+        android:hint="编辑手机号"
+        android:inputType="number"
+        android:maxLength="11"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@id/iv_edit_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextFields" />
+
+    <EditText
+        android:id="@+id/et_edit_price"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/bg_r5_99"
+        android:hint="编辑价格"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:inputType="numberDecimal"
+        app:layout_constraintTop_toBottomOf="@id/et_edit_phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextFields" />
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/et_edit_price"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:visibility="invisible"
+        android:id="@+id/tv_empty"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

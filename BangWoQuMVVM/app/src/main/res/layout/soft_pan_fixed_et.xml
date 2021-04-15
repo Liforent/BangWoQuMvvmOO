@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/messageToolBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+        <EditText
+            android:id="@+id/toolbox_et_message"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_r4_stroke"
+            android:gravity="start|center"
+            android:hint="编辑手机号"
+            android:inputType="number"
+            android:maxLength="11"
+            android:textColor="@color/black34"
+            android:textSize="16sp"
+            />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/toolbox_layout_face"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black33"
+        android:visibility="visible">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/toolbox_pagers_face"
+            android:layout_width="match_parent"
+            android:layout_height="160dp" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

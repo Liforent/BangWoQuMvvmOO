@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_root"
+        android:layout_width="280dp"
+        android:layout_height="305dp"
+        android:layout_marginBottom="120dp"
+        android:background="@drawable/bg_scan_in_mark_address"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="50dp"
+            android:text="标注地址"
+            android:textColor="@color/black33"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv0"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="19dp"
+            android:src="@drawable/ic_df_mark_address_phone"
+            app:layout_constraintStart_toStartOf="@id/tv0"
+            app:layout_constraintTop_toBottomOf="@id/tv0" />
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:text="电话"
+            android:textColor="@color/black99"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_phone"
+            app:layout_constraintStart_toEndOf="@id/iv0"
+            app:layout_constraintTop_toTopOf="@id/iv0" />
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:textColor="@color/black33"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/iv0"
+            app:layout_constraintStart_toEndOf="@id/iv0"
+            app:layout_constraintTop_toBottomOf="@id/tv1"
+            tools:text="1550545454545" />
+
+        <LinearLayout
+            android:id="@+id/ll_choose_place"
+            android:layout_width="250dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="26.5dp"
+            android:background="@drawable/bg_r10_d8"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv0">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="11dp"
+                android:src="@drawable/ic_df_mark_address" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="5.5dp"
+                android:text="点击选择地址"
+                android:textColor="@color/black99"
+                android:textSize="14sp" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="13.5dp"
+                android:layout_height="8.5dp"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="15.5dp"
+                android:src="@drawable/ic_df_mark_address_arrow_down" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="218dp"
+            android:layout_height="52dp"
+            android:layout_marginBottom="27dp"
+            android:background="@drawable/bg_df_mark_address_save_btn"
+            android:paddingBottom="4dp"
+            android:text="保存"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/iv_cancel"
+        android:layout_width="38.5dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="21.5dp"
+        android:src="@drawable/ic_cancel_white_within_circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_root" />
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout_mark_address"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="false">
+
+        <View
+            android:id="@+id/view_mask"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#60000000"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scrollview_mark_address"
+            android:layout_width="match_parent"
+            android:layout_height="342dp"
+            android:fillViewport="true"
+            android:fitsSystemWindows="false"
+            app:behavior_hideable="true"
+            app:layout_behavior=".base.commonUtils.BottomSheetHelper.BottomSheetBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_village_list"
+                android:layout_width="match_parent"
+                android:layout_height="342dp"
+                android:background="@drawable/bg_r20_top_white"
+                app:layout_constraintTop_toBottomOf="parent">
+
+                <TextView
+                    android:id="@+id/tv3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="21dp"
+                    android:text="请选择"
+                    android:textColor="@color/black33"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="51.5dp"
+                    android:layout_height="2.5dp"
+                    android:background="@drawable/bg_r2_red"
+                    app:layout_constraintEnd_toEndOf="@id/tv3"
+                    app:layout_constraintStart_toStartOf="@id/tv3"
+                    app:layout_constraintTop_toBottomOf="@id/tv3" />
+
+                <ImageView
+                    android:id="@+id/iv_quit"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_marginEnd="20dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_scan_in_delete"
+                    app:layout_constraintBottom_toBottomOf="@id/tv3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv3" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv3"
+                    app:layout_constraintTop_toBottomOf="@id/tv3" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="253dp"
+        android:layout_height="220dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/bg_r15_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="选择出库方式"
+            android:textColor="@color/black33"
+            android:textSize="21sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/ll_self"
+            android:layout_width="205dp"
+            android:layout_height="46dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/bg_btn_scan_out_mode"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/ll_not_self"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/tv_self"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="start|center"
+                android:gravity="center"
+                android:paddingStart="20dp"
+                android:text="自取出库"
+                android:textColor="@color/color_selector_choose_scan_out_mode_btn"
+                android:textSize="18sp"
+                tools:ignore="RtlSymmetry" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:visibility="visible"
+                android:id="@+id/iv_self"
+                android:layout_width="19dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center|end"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_scan_out_mode_checked" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_not_self"
+            android:layout_width="205dp"
+            android:layout_height="46dp"
+            android:layout_marginBottom="33dp"
+            android:background="@drawable/bg_btn_scan_out_mode"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/tv_not_self"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="start|center"
+                android:gravity="center"
+                android:paddingStart="20dp"
+                android:text="代取出库"
+                android:textColor="@color/color_selector_choose_scan_out_mode_btn"
+                android:textSize="18sp"
+                tools:ignore="RtlSymmetry" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/iv_not_self"
+                android:layout_width="19dp"
+                android:visibility="invisible"
+                android:layout_height="15dp"
+                android:layout_gravity="center|end"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_scan_out_mode_checked" />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <dbname value="bwq" />
+    <version value="2" />
+    <list>
+        <mapping class="com.zues.ruiyu.bangwoqu.module.home.data.BulkStorageModel"/>
+    </list>
+</litepal>

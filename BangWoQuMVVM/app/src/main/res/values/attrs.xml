@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ZssTitleView">
+        <attr name="title_text" format="string" />
+        <attr name="left_img_res" format="reference" />
+        <attr name="right_img_res" format="reference" />
+        <attr name="ztv_title_text_color" format="color" />
+        <attr name="ztv_tv_left" format="string" />
+        <attr name="ztv_title_text_size" format="float" />
+    </declare-styleable>
+</resources>

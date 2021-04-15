@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_r8_white"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <TextView
+            app:layout_constraintBottom_toTopOf="@id/view_line0"
+            android:id="@+id/tv_scan_mode"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/bg_r6_white"
+            android:gravity="center"
+            android:text="扫描模式：全屏"
+            android:textColor="@color/black33"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+        <View
+            android:id="@+id/view_line0"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintBottom_toTopOf="@id/recy_content"
+            android:background="#eeeeee"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recy_content"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

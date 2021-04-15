@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+  >
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_r20_top_white"
+        android:fillViewport="true"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="358dp"
+        app:behavior_skipCollapsed="true"
+        app:layout_behavior=".base.commonUtils.BottomSheetHelper.BottomSheetBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/cl_top_layout_packages_list"
+                layout="@layout/layout_scan_in_bottom_sheet_cl_top_packages_list"
+                android:visibility="invisible"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_top_layout_package_info"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:visibility="visible"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_r2_849eb1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv0"
+                    android:layout_width="13.5dp"
+                    android:layout_height="13.5dp"
+                    android:layout_marginStart="30dp"
+                    android:src="@drawable/ic_scan_in_money"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:includeFontPadding="false"
+                    android:text="默认代取金额"
+                    android:textColor="#585973"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/iv0"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="23dp"
+                    android:text="元"
+                    android:textColor="#585973"
+                    app:layout_constraintBottom_toBottomOf="@id/iv0"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv0"
+                    tools:ignore="HardcodedText" />
+
+                <ImageView
+                    android:id="@+id/iv_plus"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center"
+                    android:padding="7dp"
+                    android:src="@drawable/ic_scanner_plus"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tv2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription" />
+
+
+                <EditText
+                    android:id="@+id/et_default_price"
+                    android:layout_width="45dp"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:inputType="numberDecimal"
+                    android:padding="2dp"
+                    android:text="1"
+                    android:textColor="#585973"
+                    android:textCursorDrawable="@null"
+                    app:layout_constraintBottom_toBottomOf="@id/iv0"
+                    app:layout_constraintEnd_toStartOf="@id/iv_plus"
+                    app:layout_constraintTop_toTopOf="@id/iv0" />
+
+                <ImageView
+                    android:id="@+id/iv_reduce"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center"
+                    android:padding="7dp"
+                    android:src="@drawable/ic_scanner_reduce"
+                    app:layout_constraintBottom_toBottomOf="@id/iv0"
+                    app:layout_constraintEnd_toStartOf="@id/et_default_price"
+                    app:layout_constraintTop_toTopOf="@id/iv0" />
+
+                <View
+                    android:id="@+id/view_line0"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#eeeeee"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recy_content"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@id/slide_to_confirm"
+                app:layout_constraintTop_toBottomOf="@id/cl_top_layout_package_info" />
+
+
+
+
+            <com.chinalwb.slidetoconfirmlib.SlideToConfirm
+                android:id="@+id/slide_to_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                app:border_radius="22dp"
+                app:border_width="2dp"
+                app:completed_text="正在入库"
+                app:completed_text_color="@android:color/white"
+                app:completed_text_size="15sp"
+                app:engage_text="右滑确认入库        "
+                app:engage_text_color="#3170F5"
+                app:engage_text_size="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:slider_background_color="@color/white"
+                app:slider_color="#3271F6"
+                app:slider_image="@drawable/ic_scan_in_slide_view"
+                app:slider_reset_duration="1000"
+                app:slider_threshold="1dp"
+                app:slider_vibration_duration="50"
+                app:slider_width="55dp"
+                tools:context=".MainActivity" />
+            <ProgressBar
+                android:visibility="invisible"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/progress_bar"
+                app:layout_constraintEnd_toEndOf="@id/slide_to_confirm"
+                app:layout_constraintTop_toTopOf="@id/slide_to_confirm"
+                app:layout_constraintBottom_toBottomOf="@id/slide_to_confirm"
+
+             />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

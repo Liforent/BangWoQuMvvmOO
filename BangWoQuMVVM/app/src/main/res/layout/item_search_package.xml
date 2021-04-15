@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginBottom="15dp"
+    android:background="@drawable/bg_r5_white">
+
+    <ImageView
+        android:id="@+id/iv_com_logo"
+        android:layout_width="19dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="17dp"
+        android:src="@drawable/ic_avatar_holder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_com_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:textColor="@color/black11"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_com_logo"
+        app:layout_constraintStart_toEndOf="@id/iv_com_logo"
+        app:layout_constraintTop_toTopOf="@id/iv_com_logo"
+        tools:text="圆通快递" />
+
+    <TextView
+        android:id="@+id/tv_tracking_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:textColor="#A1A1A1"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_com_logo"
+        app:layout_constraintStart_toEndOf="@id/tv_com_name"
+        app:layout_constraintTop_toTopOf="@id/iv_com_logo"
+        tools:text="12454454837543" />
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="13.5dp"
+        android:textColor="#3271F6"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_com_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_com_logo"
+        tools:text="取件中" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_receiver"
+        android:paddingBottom="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/bg_search_item_receiver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_com_logo">
+
+        <TextView
+            android:id="@+id/tv0"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="16.5dp"
+            android:background="@drawable/bg_ovl_theme_color"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="收"
+            android:textColor="@color/white"
+            android:textSize="9sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="收件人："
+            android:textColor="#7B7B7B"
+            app:layout_constraintBottom_toBottomOf="@id/tv0"
+            app:layout_constraintStart_toEndOf="@id/tv0"
+            app:layout_constraintTop_toTopOf="@id/tv0" />
+
+        <TextView
+            android:id="@+id/tv_receiver_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:textColor="@color/black11"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv0"
+            app:layout_constraintStart_toEndOf="@id/tv1"
+            app:layout_constraintTop_toTopOf="@id/tv0"
+            tools:text="金山张不二   12489012849018" />
+
+        <TextView
+            android:id="@id/tv2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="地址："
+            android:textColor="#7B7B7B"
+            app:layout_constraintEnd_toEndOf="@id/tv1"
+            app:layout_constraintStart_toStartOf="@id/tv1"
+            app:layout_constraintTop_toBottomOf="@id/tv1" />
+
+        <TextView
+            android:id="@+id/tv_receiver_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:layout_marginEnd="9dp"
+            android:textColor="@color/black11"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_receiver_name"
+            app:layout_constraintTop_toTopOf="@id/tv2"
+            tools:text="覅偶是大家覅欧式的佛教四大方式大家覅瞬间大幅山东" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        app:layout_constraintTop_toBottomOf="@id/cl_receiver"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="9.5dp"
+        android:background="@drawable/bg_r5_fffa4"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center_vertical"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="17dp"
+        >
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_marginStart="9dp"
+            android:background="@drawable/bg_ovl_feb729"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="送"
+            android:textColor="@color/white"
+            android:textSize="9sp"
+            tools:ignore="SmallSp" />
+        <TextView
+            android:id="@+id/tv_deliver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="配送员："
+            android:textColor="#7B7B7B"
+            app:layout_constraintBottom_toBottomOf="@id/tv0"
+            app:layout_constraintStart_toEndOf="@id/tv0"
+            app:layout_constraintTop_toTopOf="@id/tv0" />
+
+        <TextView
+            android:id="@+id/tv_driver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="9dp"
+            android:textColor="@color/black11"
+            android:textSize="13sp"
+            tools:text="金山张不二   12489012849018" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

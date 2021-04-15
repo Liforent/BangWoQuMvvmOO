@@ -1,0 +1,284 @@
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.security.MessageDigest\r\n\r\napply plugin: 'com.android.application'\r\napply plugin: 'kotlin-android'\r\napply plugin: 'kotlin-android-extensions'\r\n\r\nandroid {\r\n    compileSdkVersion 29\r\n    buildToolsVersion \"30.0.1\"\r\n\r\n    defaultConfig {\r\n        applicationId \"com.zues.ruiyu.bangwoqu\"\r\n        minSdkVersion 23\r\n        targetSdkVersion 29\r\n        versionCode 7\r\n        versionName \"1.2.5\"\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n        externalNativeBuild {\r\n            cmake {\r\n                cppFlags \"-std=c++11 -frtti -fexceptions -Wno-format\"\r\n                arguments '-DANDROID_PLATFORM=android-23', '-DANDROID_STL=c++_shared' ,\"-DANDROID_ARM_NEON=TRUE\"\r\n            }\r\n        }\r\n        ndk {\r\n            // abiFilters \"arm64-v8a\", \"armeabi-v7a\"\r\n            abiFilters   \"arm64-v8a\", \"armeabi-v7a\"\r\n            ldLibs \"jnigraphics\"\r\n        }\r\n\r\n    }\r\n    signingConfigs{\r\n        config {\r\n        try {\r\n            storeFile file(\"../mobdatas_key.jks\")\r\n            storePassword \"ruiyu@mobdatas\"\r\n            keyAlias \"key\"\r\n            keyPassword \"ruiyu@mobdatas\"\r\n            v1SigningEnabled true\r\n            v2SigningEnabled true\r\n        }\r\n        catch (ex) {\r\n            ex.printStackTrace()\r\n            throw new InvalidUserDataException(\"秘钥用户名或密码错误${ex.getMessage()}\")\r\n        }}\r\n    }\r\n\r\n\r\n    applicationVariants.all { variant ->\r\n        variant.outputs.all { output ->\r\n            def outputFile = output.outputFile\r\n            if (outputFile != null &&\r\n                    outputFile.name.endsWith(\".apk\") &&\r\n                    \"release\" == variant.buildType.name) {\r\n                variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + File.separator + \"builtFlavors\")\r\n                outputFileName = \"bangwoqu_v${variant.versionName}+${variant.versionCode}_${buildTime()}_${variant.flavorName}_release.apk\"\r\n            }\r\n        }\r\n    }\r\n    buildTypes {\r\n        release {\r\n            signingConfig signingConfigs.config\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n\r\n    android {\r\n        lintOptions {\r\n            checkReleaseBuilds false\r\n            // Or, if you prefer, you can continue to check for errors in release builds,\r\n            // but continue the build even when errors are found:\r\n            abortOnError false\r\n        }\r\n    }\r\n    externalNativeBuild {\r\n        cmake {\r\n            path \"src/main/cpp/CMakeLists.txt\"\r\n            version \"3.10.2\"\r\n        }\r\n    }\r\n\r\n}\r\n\r\ndependencies {\r\n    implementation fileTree(dir: \"libs\", include: [\"*.jar\"])\r\n    implementation \"org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version\"\r\n    implementation 'androidx.core:core-ktx:1.3.2'\r\n    implementation 'androidx.appcompat:appcompat:1.2.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'\r\n    implementation 'com.google.android.material:material:1.2.1'\r\n    implementation files('src\\\\main\\\\java\\\\com\\\\zues\\\\ruiyu\\\\bangwoqu\\\\PadleLite\\\\java\\\\PaddlePredictor.jar')\r\n    testImplementation 'junit:junit:4.13.1'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.2'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'\r\n\r\n    //QRCODE\r\n    implementation project(path: ':zxing')\r\n    implementation project(path: ':areaselectorlibrary')\r\n    implementation project(path: ':swipemenulib')\r\n\r\n    implementation 'com.rmtheis:tess-two:9.0.0'\r\n\r\n    //http\r\n    implementation \"com.squareup.retrofit2:retrofit:2.6.2\"\r\n    implementation \"com.squareup.retrofit2:converter-gson:2.6.2\"\r\n    implementation \"com.squareup.retrofit2:adapter-rxjava2:2.5.0\"\r\n    implementation \"com.squareup.okhttp3:okhttp:3.4.1\"\r\n    implementation \"com.squareup.okhttp3:logging-interceptor:3.4.1\"\r\n    implementation \"io.reactivex.rxjava2:rxkotlin:2.3.0\"\r\n    implementation \"io.reactivex.rxjava2:rxandroid:2.1.1\"\r\n\r\n    implementation \"org.jetbrains.anko:anko:0.10.8\"\r\n    implementation \"com.kingja.loadsir:loadsir:1.3.6\"\r\n    implementation 'com.github.bumptech.glide:glide:4.5.0'\r\n    annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'\r\n    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'\r\n    implementation 'org.greenrobot:eventbus:3.1.1'\r\n    implementation 'com.github.addappcn:android-pickers:2.0.0'\r\n    implementation 'com.alibaba:fastjson:1.2.48'\r\n    implementation 'com.google.android.material:material:1.2.1'\r\n\r\n\r\n    implementation 'com.github.youlookwhat:WebProgress:1.1.0'\r\n    //1.1.0 API改动过大，老用户升级需谨慎\r\n    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'\r\n    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'//没有使用特殊Header，可以不加这行\r\n    implementation 'com.jaeger.statusbarutil:library:1.4.0'\r\n\r\n\r\n    // 基础依赖包，必须要依赖\r\n    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'\r\n// fragment快速实现（可选）\r\n    implementation 'com.gyf.immersionbar:immersionbar-components:3.0.0'\r\n// kotlin扩展（可选）\r\n    implementation 'com.gyf.immersionbar:immersionbar-ktx:3.0.0'\r\n\r\n    // MMKV\r\n    implementation 'com.tencent:mmkv-static:1.2.5'\r\n\r\n    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'\r\n\r\n    //lifecycle\r\n    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-beta01'\r\n    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-beta01'\r\n    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-beta01'\r\n    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0-beta01'\r\n    //协程\r\n    implementation \"org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9\"\r\n    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'\r\n\r\n\r\n\r\n    implementation 'com.github.chinalwb:slidetoconfirm:1.0.3'\r\n\r\n    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.2'\r\n    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.2'\r\n\r\n    implementation 'com.github.chrisbanes:PhotoView:2.0.0'\r\n}\r\n\r\n\r\ndef archives = [\r\n        [\r\n                'src' : 'https://paddlelite-demo.bj.bcebos.com/libs/android/paddle_lite_libs_v2_6_1.tar.gz',\r\n                'dest': 'PaddleLite'\r\n        ],\r\n        [\r\n                'src' : 'https://paddlelite-demo.bj.bcebos.com/libs/android/opencv-4.2.0-android-sdk.tar.gz',\r\n                'dest': 'OpenCV'\r\n        ],\r\n        [\r\n                'src' : 'https://paddleocr.bj.bcebos.com/deploy/lite/ocr_v1_for_cpu.tar.gz',\r\n                'dest' : 'src/main/assets/models/ocr_v1_for_cpu'\r\n        ]\r\n]\r\n\r\ntask downloadAndExtractArchives(type: DefaultTask) {\r\n    doFirst {\r\n        println \"Downloading and extracting archives including libs and models\"\r\n    }\r\n    doLast {\r\n        // Prepare cache folder for archives\r\n        String cachePath = \"cache\"\r\n        if (!file(\"${cachePath}\").exists()) {\r\n            mkdir \"${cachePath}\"\r\n        }\r\n        archives.eachWithIndex { archive, index ->\r\n            MessageDigest messageDigest = MessageDigest.getInstance('MD5')\r\n            messageDigest.update(archive.src.bytes)\r\n            String cacheName = new BigInteger(1, messageDigest.digest()).toString(32)\r\n            // Download the target archive if not exists\r\n            boolean copyFiles = !file(\"${archive.dest}\").exists()\r\n            if (!file(\"${cachePath}/${cacheName}.tar.gz\").exists()) {\r\n                ant.get(src: archive.src, dest: file(\"${cachePath}/${cacheName}.tar.gz\"))\r\n                copyFiles = true; // force to copy files from the latest archive files\r\n            }\r\n            // Extract the target archive if its dest path does not exists\r\n            if (copyFiles) {\r\n                copy {\r\n                    from tarTree(\"${cachePath}/${cacheName}.tar.gz\")\r\n                    into \"${archive.dest}\"\r\n                }\r\n            }\r\n        }\r\n    }\r\n}\r\npreBuild.dependsOn downloadAndExtractArchives\r\ndef static buildTime() {\r\n    return new Date().format(\"MMdd-HHmmss\")\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision b297995a1f791a9a97d76482a37b7414cdca5300)
++++ app/build.gradle	(date 1608131939116)
+@@ -6,7 +6,7 @@
+ 
+ android {
+     compileSdkVersion 29
+-    buildToolsVersion "30.0.1"
++    buildToolsVersion "30.0.2"
+ 
+     defaultConfig {
+         applicationId "com.zues.ruiyu.bangwoqu"
+@@ -79,6 +79,7 @@
+             version "3.10.2"
+         }
+     }
++    ndkVersion '21.1.6352462'
+ 
+ }
+ 
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#Mon Sep 07 16:42:23 CST 2020\r\ndistributionBase=GRADLE_USER_HOME\r\ndistributionPath=wrapper/dists\r\nzipStoreBase=GRADLE_USER_HOME\r\nzipStorePath=wrapper/dists\r\ndistributionUrl=https\\://services.gradle.org/distributions/gradle-6.1.1-all.zip\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>GBK
+===================================================================
+--- gradle/wrapper/gradle-wrapper.properties	(revision b297995a1f791a9a97d76482a37b7414cdca5300)
++++ gradle/wrapper/gradle-wrapper.properties	(date 1608131939217)
+@@ -1,6 +1,6 @@
+-#Mon Sep 07 16:42:23 CST 2020
++#Sat Dec 05 16:51:08 CST 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-6.1.1-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-6.5-bin.zip
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Top-level build file where you can add configuration options common to all sub-projects/modules.\r\nbuildscript {\r\n    ext.kotlin_version = \"1.4.10\"\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n        maven{ url \"https://jitpack.io\" }\r\n        maven { url 'https://maven.google.com' }\r\n    }\r\n    dependencies {\r\n        classpath \"com.android.tools.build:gradle:4.0.2\"\r\n        classpath \"org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version\"\r\n\r\n        // NOTE: Do not place your application dependencies here; they belong\r\n        // in the individual module build.gradle files\r\n    }\r\n}\r\n\r\nallprojects {\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n        maven{ url \"https://jitpack.io\" }\r\n        maven { url 'https://maven.google.com' }\r\n    }\r\n}\r\n\r\ntask clean(type: Delete) {\r\n    delete rootProject.buildDir\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- build.gradle	(revision b297995a1f791a9a97d76482a37b7414cdca5300)
++++ build.gradle	(date 1608131939226)
+@@ -8,7 +8,7 @@
+         maven { url 'https://maven.google.com' }
+     }
+     dependencies {
+-        classpath "com.android.tools.build:gradle:4.0.2"
++        classpath 'com.android.tools.build:gradle:4.1.1'
+         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleMigrationSettings\" migrationVersion=\"1\" />\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"testRunner\" value=\"PLATFORM\" />\r\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"gradleHome\" value=\"$USER_HOME$/.gradle/wrapper/dists/gradle-5.4.1-all/3221gyojl5jsh0helicew7rwx/gradle-5.4.1\" />\r\n        <option name=\"gradleJvm\" value=\"1.8\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n            <option value=\"$PROJECT_DIR$/app\" />\r\n            <option value=\"$PROJECT_DIR$/areaselectorlibrary\" />\r\n            <option value=\"$PROJECT_DIR$/swipemenulib\" />\r\n            <option value=\"$PROJECT_DIR$/zxing\" />\r\n          </set>\r\n        </option>\r\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/gradle.xml	(revision b297995a1f791a9a97d76482a37b7414cdca5300)
++++ .idea/gradle.xml	(date 1608131939234)
+@@ -5,6 +5,7 @@
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+         <option name="testRunner" value="PLATFORM" />
++        <option name="disableWrapperSourceDistributionNotification" value="true" />
+         <option name="distributionType" value="DEFAULT_WRAPPED" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+         <option name="gradleHome" value="$USER_HOME$/.gradle/wrapper/dists/gradle-5.4.1-all/3221gyojl5jsh0helicew7rwx/gradle-5.4.1" />
+@@ -19,6 +20,7 @@
+           </set>
+         </option>
+         <option name="resolveModulePerSourceSet" value="false" />
++        <option name="useQualifiedModuleNames" value="true" />
+       </GradleProjectSettings>
+     </option>
+   </component>
+Index: zxing/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.library'\r\n\r\nandroid {\r\n    compileSdkVersion 29\r\n    buildToolsVersion \"30.0.0\"\r\n\r\n    defaultConfig {\r\n        minSdkVersion 16\r\n        targetSdkVersion 29\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation fileTree(dir: 'libs', include: ['*.jar'])\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- zxing/build.gradle	(revision b297995a1f791a9a97d76482a37b7414cdca5300)
++++ zxing/build.gradle	(date 1608131939256)
+@@ -2,7 +2,7 @@
+ 
+ android {
+     compileSdkVersion 29
+-    buildToolsVersion "30.0.0"
++    buildToolsVersion '30.0.2'
+ 
+     defaultConfig {
+         minSdkVersion 16
+Index: swipemenulib/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.library'\r\n\r\nandroid {\r\n    compileSdkVersion 29\r\n    buildToolsVersion \"30.0.0\"\r\n\r\n    defaultConfig {\r\n        minSdkVersion 21\r\n        targetSdkVersion 29\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n    }\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation fileTree(dir: 'libs', include: ['*.jar'])\r\n    implementation 'androidx.legacy:legacy-support-core-ui:1.0.0'\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- swipemenulib/build.gradle	(revision b297995a1f791a9a97d76482a37b7414cdca5300)
++++ swipemenulib/build.gradle	(date 1608131939285)
+@@ -2,7 +2,7 @@
+ 
+ android {
+     compileSdkVersion 29
+-    buildToolsVersion "30.0.0"
++    buildToolsVersion '30.0.2'
+ 
+     defaultConfig {
+         minSdkVersion 21
+Index: areaselectorlibrary/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.library'\r\n\r\nandroid {\r\n    compileSdkVersion 29\r\n    buildToolsVersion \"30.0.0\"\r\n\r\n    defaultConfig {\r\n        minSdkVersion 16\r\n        targetSdkVersion 29\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation fileTree(dir: \"libs\", include: [\"*.jar\"])\r\n    implementation 'androidx.appcompat:appcompat:1.2.0'\r\n    //Gson\r\n    implementation 'com.google.code.gson:gson:2.8.6'\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- areaselectorlibrary/build.gradle	(revision b297995a1f791a9a97d76482a37b7414cdca5300)
++++ areaselectorlibrary/build.gradle	(date 1608131939313)
+@@ -2,7 +2,7 @@
+ 
+ android {
+     compileSdkVersion 29
+-    buildToolsVersion "30.0.0"
++    buildToolsVersion '30.0.2'
+ 
+     defaultConfig {
+         minSdkVersion 16
+Index: app/src/main/java/com/zues/ruiyu/bangwoqu/module/home/view/TestCamera2.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/zues/ruiyu/bangwoqu/module/home/view/TestCamera2.kt	(date 1608136264931)
++++ app/src/main/java/com/zues/ruiyu/bangwoqu/module/home/view/TestCamera2.kt	(date 1608136264931)
+@@ -0,0 +1,101 @@
++package com.zues.ruiyu.bangwoqu.module.home.view
++
++import android.Manifest
++import android.content.Context
++import android.content.pm.PackageManager
++import android.hardware.camera2.CameraCharacteristics
++import android.hardware.camera2.CameraDevice
++import android.hardware.camera2.CameraManager
++import android.view.SurfaceHolder
++import android.view.SurfaceView
++import androidx.core.app.ActivityCompat
++import com.zues.ruiyu.bangwoqu.R
++import com.zues.ruiyu.bangwoqu.base.mvvm.BaseLifeCycleActivity
++import com.zues.ruiyu.bangwoqu.module.home.HomeViewModel
++import com.zues.ruiyu.bangwoqu.ocr.camera.decode.CaptureActivityHandler
++import kotlinx.android.synthetic.main.activity_scanner_out.*
++import org.jetbrains.anko.toast
++
++class TestCamera2 : BaseLifeCycleActivity<HomeViewModel>(), SurfaceHolder.Callback {
++
++    private var mCameraManager: CameraManager? = null
++    private var mCameraDevice: CameraDevice? = null
++    private var mSurfaceView: SurfaceView? = null
++    private var mCaptureActivityHandler: CaptureActivityHandler? = null
++    val captureActivityHandler: CaptureActivityHandler?
++        get() = mCaptureActivityHandler
++
++    private var mStateCallback = object : CameraDevice.StateCallback() {
++        override fun onOpened(cameraDevice: CameraDevice) {
++            mCameraDevice = cameraDevice
++            takePreview();
++        }
++
++        override fun onDisconnected(p0: CameraDevice) {
++            // 关闭摄像头
++            if (null != mCameraDevice) {
++                // 关闭摄像头
++                mCameraDevice?.close();
++                mCameraDevice = null;
++            }
++        }
++
++        override fun onError(p0: CameraDevice, p1: Int) {
++            toast("开启摄像头失败")
++        }
++
++    }
++
++    private fun takePreview() {
++
++    }
++
++    override fun surfaceCreated(p0: SurfaceHolder?) {
++        initCame()
++    }
++
++    private fun initCame() {
++        val mCameraId = CameraCharacteristics.LENS_FACING_FRONT.toString()
++        mCameraManager = getSystemService(Context.CAMERA_SERVICE) as CameraManager
++        if (ActivityCompat.checkSelfPermission(
++                this,
++                Manifest.permission.CAMERA
++            ) != PackageManager.PERMISSION_GRANTED
++        ) {
++            return
++        }
++        mCameraManager?.openCamera(mCameraId, mStateCallback, mCaptureActivityHandler)
++    }
++
++    override fun surfaceChanged(p0: SurfaceHolder?, p1: Int, p2: Int, p3: Int) {
++
++    }
++
++    override fun surfaceDestroyed(p0: SurfaceHolder?) {
++        mCameraDevice?.close()
++        mCameraDevice = null
++    }
++
++    override fun initData(): Boolean = false
++
++    override fun initDataObserver() {
++
++    }
++
++    override fun getLayoutId(): Int = R.layout.activity_scanner_out
++
++    override fun initView() {
++        super.initView()
++        if (null == mSurfaceView) {
++            qr_code_view_stub.layoutResource = R.layout.layout_surface_view
++            mSurfaceView = qr_code_view_stub.inflate() as SurfaceView?
++        }
++        val surfaceHolder = mSurfaceView?.holder
++        //initCamera(surfaceHolder)
++
++        mCaptureActivityHandler = CaptureActivityHandler(this@BaseScannerActivity)
++        surfaceHolder?.addCallback(this)
++    }
++
++
++}
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"EntryPointsManager\">\r\n    <list size=\"1\">\r\n      <item index=\"0\" class=\"java.lang.String\" itemvalue=\"org.greenrobot.eventbus.Subscribe\" />\r\n    </list>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_1_7\" project-jdk-name=\"1.8\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision b297995a1f791a9a97d76482a37b7414cdca5300)
++++ .idea/misc.xml	(date 1608131939368)
+@@ -5,7 +5,7 @@
+       <item index="0" class="java.lang.String" itemvalue="org.greenrobot.eventbus.Subscribe" />
+     </list>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>
+   <component name="ProjectType">
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/compiler.xml	(date 1608131939341)
++++ .idea/compiler.xml	(date 1608131939341)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="CompilerConfiguration">
++    <bytecodeTargetLevel target="1.8" />
++  </component>
++</project>
+\ No newline at end of file

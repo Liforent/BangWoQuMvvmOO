@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <ViewStub
+        android:id="@+id/qr_code_view_stub"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
+
+
+    <com.zues.ruiyu.bangwoqu.ocr.camera.view.ScannerFinderView
+        android:id="@+id/qr_code_view_finder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:visibility="visible" />
+
+
+    <com.zues.ruiyu.bangwoqu.custom.ZssTitleView
+        android:id="@+id/title_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_view_height"
+        android:background="@color/translate"
+        app:left_img_res="@drawable/ic_back_white"
+        app:title_text="扫描测试"
+        app:ztv_title_text_color="@color/white" />
+
+    <TextView
+        android:textColor="@color/white"
+        tools:text="1541564564654"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:id="@+id/tv_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp" />
+    <ImageView
+        android:id="@+id/iv_pic"
+        android:scaleType="centerInside"
+        android:layout_width="match_parent"
+        android:layout_marginTop="400dp"
+        android:layout_height="200dp"/>
+
+
+</RelativeLayout>

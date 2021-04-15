@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF0092FD</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="black99">#999999</color>
+    <color name="black">#000000</color>
+    <color name="black11">#111111</color>
+    <color name="view_line_ededf0">#ededf0</color>
+    <color name="black66">#666666</color>
+    <color name="black34">#343434</color>
+    <color name="black87">#878787</color>
+    <color name="black12">#121212</color>
+    <color name="blackcc">#cccccc</color>
+    <color name="black9a">#9a9a9a</color>
+    <color name="finder_mask">#80000000</color>
+    <color name="finder_laser">#3271F6</color>
+    <color name="translate">#00000000</color>
+    <color name="ea5353">#ea5353</color>
+    <color name="ee">#eeeeee</color>
+    <color name="red">#ff66ff</color>
+    <color name="transp">#00000000</color>
+    <color name="colorRed">#ff22ff</color>
+    <color name="black2d">#2d2d2d</color>
+</resources>
